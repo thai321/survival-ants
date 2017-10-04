@@ -1,17 +1,51 @@
-function Particle(x, y) {
+function Particle(x, y, dna) {
   this.acceleration = createVector(0, 0);
   this.velocity = createVector(0, -2);
   this.pos = createVector(x, y);
-  this.r = 3;
-  this.maxspeed = 4;
-  this.maxforce = 0.01;
+  this.r = 4;
+  this.maxspeed = 5;
+  this.maxforce = 0.2;
+  this.health = 1;
 
   this.dna = [];
-  this.dna[0] = random(-5, 5);
-  this.dna[1] = random(-5, 5);
+  if (dna === undefined) {
+    // Food attraction
+    this.dna[0] = random(-5, 5);
+
+    // Poison attraction
+    this.dna[1] = random(-5, 5);
+
+    // food eye
+    this.dna[2] = random(0, 100);
+
+    // poison eye
+    this.dna[3] = random(0, 100);
+  } else {
+    this.dna[0] = dna[0];
+    if (random(1) < 0.01) {
+      this.dna[0] += random(-0.1, 0.1);
+    }
+
+    this.dna[1] = dna[1];
+    if (random(1) < 0.01) {
+      this.dna[1] += random(-0.1, 0.1);
+    }
+
+    this.dna[2] = dna[2];
+    if (random(1) < 0.01) {
+      this.dna[2] += random(-10, 10);
+    }
+
+    this.dna[3] = dna[3];
+    if (random(1) < 0.01) {
+      this.dna[3] += random(-10, 10);
+    }
+  }
 
   // update location
   this.update = function() {
+    this.health -= 0.005;
+
     // update velocity
     this.velocity.add(this.acceleration);
 
@@ -28,8 +62,8 @@ function Particle(x, y) {
   };
 
   this.behaviors = function(food, poison) {
-    let foodSteering = this.get(food);
-    let poisonSteering = this.get(poison);
+    let foodSteering = this.get(food, 0.4, this.dna[2]);
+    let poisonSteering = this.get(poison, -0.1, this.dna[3]);
 
     foodSteering.mult(this.dna[0]);
     poisonSteering.mult(this.dna[1]);
@@ -38,25 +72,43 @@ function Particle(x, y) {
     this.applyForce(poisonSteering);
   };
 
-  this.get = function(list) {
-    let record = Infinity;
-    let closestIndex = -1;
+  this.copy = function() {
+    if (random(1) < 0.001) {
+      return new Particle(this.pos.x, this.pos.y, this.dna);
+    } else {
+      return null;
+    }
+  };
 
-    for (let i = 0; i < list.length; i++) {
+  this.get = function(list, point, inEye) {
+    let record = Infinity;
+    let closestThing = null;
+
+    for (let i = list.length - 1; i >= 0; i--) {
       // const d = dist(this.pos.x, this.pos.y, list[i].x, list[i].y);
       const d = this.pos.dist(list[i]);
-      if (d < record) {
-        record = d;
-        closestIndex = i;
+
+      if (d < this.maxspeed) {
+        // eat something
+        list.splice(i, 1);
+        this.health += point;
+      } else {
+        // attracting to it
+        if (d < record && d < inEye) {
+          record = d;
+          closestThing = list[i];
+        }
       }
     }
 
-    if (record < 5) {
-      // get rid of the food
-      // 5 pixels
-      list.splice(closestIndex, 1);
-    } else if (closestIndex > -1) {
-      return this.seek(list[closestIndex]);
+    // if (record < 5) {
+    //   // get rid of the food
+    //   // within 5 pixels
+    //   list.splice(closestIndex, 1);
+    //   this.health += point;
+    // } else if (closestIndex > -1) {
+    if (closestThing !== null) {
+      return this.seek(closestThing);
     }
 
     return createVector(0, 0);
@@ -64,7 +116,7 @@ function Particle(x, y) {
 
   this.seek = function(target) {
     // desire veloctiy = target location - the particle location
-    const desired = p5.Vector.sub(target, this.pos);
+    var desired = p5.Vector.sub(target, this.pos);
 
     // scale to maximum speed
     desired.setMag(this.maxspeed);
@@ -78,6 +130,10 @@ function Particle(x, y) {
     return steer;
   };
 
+  this.decay = function() {
+    return this.health < 0;
+  };
+
   this.display = function() {
     // Draw a triangle rotated in the direction
     const theta = this.velocity.heading() + PI / 2;
@@ -86,22 +142,57 @@ function Particle(x, y) {
     translate(this.pos.x, this.pos.y);
     rotate(theta);
 
-    stroke(0, 255, 0);
-    line(0, 0, 0, -this.dna[0] * 10);
+    // if (debug.checked()) {
+    if (debug) {
+      stroke(0, 255, 0);
+      noFill();
+      line(0, 0, 0, -this.dna[0] * 10);
+      ellipse(0, 0, -this.dna[2] * 2);
 
-    stroke(255, 0, 0);
-    line(0, 0, 0, -this.dna[1] * 10);
+      stroke(255, 0, 0);
+      line(0, 0, 0, -this.dna[1] * 10);
+      ellipse(0, 0, -this.dna[3] * 2);
+    }
 
-    fill(127);
-    stroke(200);
+    const green = color(0, 255, 0);
+    const red = color(255, 0, 0);
+    const colr = lerpColor(red, green, this.health);
+
+    fill(colr);
+    stroke(colr);
     strokeWeight(1);
     beginShape();
     vertex(0, -this.r * 2);
     vertex(-this.r, this.r * 2);
     vertex(this.r, this.r * 2);
+    // image(ant, this.pos.x, this.pos.y, 30, 30);
 
     endShape(CLOSE);
 
     pop();
+  };
+
+  this.inBound = function() {
+    const d = 10;
+    var desired = null;
+
+    if (this.pos.x < d) {
+      desired = createVector(this.maxspeed, this.velocity.y);
+    } else if (this.pos.x > width - d) {
+      desired = createVector(-this.maxspeed, this.velocity.y);
+    }
+
+    if (this.pos.y < d) {
+      desired = createVector(this.velocity.x, this.maxspeed);
+    } else if (this.pos.y > height - d) {
+      desired = createVector(this.velocity.x, -this.maxspeed);
+    }
+
+    if (desired !== null) {
+      desired.normalize();
+      desired.mult(this.maxspeed);
+      const steerVector = p5.Vector.sub(desired, this.velocity);
+      this.applyForce(steerVector);
+    }
   };
 }

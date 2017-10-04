@@ -6,8 +6,34 @@
   <script language="javascript" src="libraries/p5.sound.js"></script>
   <script language="javascript" type="text/javascript" src="particle.js"></script>
   <script language="javascript" type="text/javascript" src="app.js"></script>
+
+  <link rel="stylesheet" href="/styles/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/master.css">
 </head>
 
 <body>
+
+
+  <div class='welcome'>
+
+    <h1>Welcome to our Picnic!!</h1>
+    <h4>Watch as the Hungry particle get to work on our fries! <img src='/images/food.ico'/> </h4>
+    <h4>They'll need to stay away from </h4>
+    <h4>the poison <img src="/images/poison.png"/>, otherwise they will die</h4>
+
+    <h4>You can click or drag on the image to give them food</h4>
+
+    <button class='btn btn-outline-primary' onclick="start()">Start</button>
+  </div>
+
+  <div class="buttons">
+  <button class='btn btn-small btn-outline-warning none btn-reset' onclick="reset()">Reset</button>
+
+  <button class='btn btn-outline-danger debug none' onclick="debugChecked()">Debug Mode</button>
+
+  <a href="https://github.com/thai321/survival-particle" target="_blank" class="btn btn-outline-success learn">Learn More</a>
+</div>
+
+
 </body>
 </html>

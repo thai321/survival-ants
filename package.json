@@ -1,0 +1,23 @@
+{
+  "name": "survival-particle",
+  "version": "1.0.0",
+  "description": " ",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thai321/survival-particle/issues"
+  },
+  "homepage": "https://github.com/thai321/survival-particle#readme",
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
+}

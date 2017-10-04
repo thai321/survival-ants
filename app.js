@@ -24,6 +24,7 @@ function preload() {
   foodIcon3 = loadImage('images/shake.png');
   poisonIcon = loadImage('images/poison2.png');
   $($('.buttons')[0]).hide();
+  $($('.header2')[0]).hide();
 }
 
 function setup() {
@@ -162,6 +163,7 @@ function start() {
   debugButton.classList.toggle('none');
 
   $($('.buttons')[0]).show();
+  $($('.header2')[0]).show();
 
   setup();
   loop();
@@ -184,6 +186,7 @@ function reset() {
   debugButton.classList.toggle('none');
 
   $($('.buttons')[0]).hide();
+  $($('.header2')[0]).hide();
 
   setup();
 }

@@ -21,23 +21,35 @@
 
 
 <div class="app">
-<img class='foodbg' src="/images/foodbg.png">
+
   <div class='header'>
-    <div class='buttons2'>
-      <div class='feed-ant'>
-      <p>Pick what you'd like the ants to eat! </p>
-      <i class="foodIcon" onclick="food1()"> <img src="/images/food.ico" ></i>
-      <i class="foodIcon " onclick="food2()"> <img src="/images/bugger.ico" ></i>
-      <i class="foodIcon" onclick="food3()"> <img src="/images/shake.png" ></i>
-      <div id="sketch-holder">
+    <div class='header2'>
+
+      <div class="buttons">
+
+        <button class='btn btn-small btn-outline-warning none btn-reset' onclick="reset()">Reset</button>
+
+        <button class='btn btn-outline-danger debug none' onclick="debugChecked()">Debug Mode</button>
+
+        <a href="https://github.com/thai321/survival-particle" target="_blank" class="btn btn-outline-success learn">Learn More</a>
       </div>
+
+      <div class='feed-ant'>
+        <div class="p-text">
+        <p>Pick what you'd like the ants to eat! </p>
+        <p>Click or drag on the image to feed them</p>
+      </div>
+        <i class="foodIcon" onclick="food1()"> <img src="/images/food.ico" ></i>
+        <i class="foodIcon " onclick="food2()"> <img src="/images/bugger.ico" ></i>
+        <i class="foodIcon" onclick="food3()"> <img src="/images/shake.png" ></i>
+      </div>
+
+
+
+      <div id="sketch-holder">
     </div>
 
-    <button class='btn btn-small btn-outline-warning none btn-reset' onclick="reset()">Reset</button>
 
-    <button class='btn btn-outline-danger debug none' onclick="debugChecked()">Debug Mode</button>
-
-    <a href="https://github.com/thai321/survival-particle" target="_blank" class="btn btn-outline-success learn">Learn More</a>
     </div>
   <div>
   <div class='welcome'>
@@ -59,7 +71,7 @@
   </div>
   </div>
   </div>
-<img class='foodbg' src="/images/foodbg.png">
+
 </div>
 
 

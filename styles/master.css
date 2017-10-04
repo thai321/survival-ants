@@ -3,10 +3,14 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  /*<img class='foodbg' src="/images/foodbg.png">*/
+  background: url('foodbg.png');
 }
 
 .app {
   display: flex;
+  background: white;
+  height: 100%;
 }
 
 .foodbg {
@@ -17,6 +21,7 @@ body {
 #sketch-holder {
   display: flex;
   align-items: center;
+  margin-bottom: 41px;
 }
 
 .welcome {
@@ -29,7 +34,6 @@ body {
   height: 600;
   background-color: black;
   background: url('picnic.jpg');
-  margin-top: 8%;
 }
 
 .welcome-text {
@@ -60,8 +64,10 @@ button {
 
 .feed-ant {
   display: flex;
-  flex-direction: column;
-  margin-top: 10px;
+
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
   font-size: 21px;
   font-family: 'Germania One', cursive;
 }
@@ -70,6 +76,12 @@ i img {
   width: 30px;
   height: 30px;
   margin-left: 10px;
+  cursor: pointer;
+}
+
+i:hover {
+  width: 45px;
+  height: 45px;
 }
 
 .posion {
@@ -89,13 +101,14 @@ h4 img {
 .buttons {
   display: flex;
   flex-direction: row;
+  margin-right: 108px;
 }
 
-.buttons2 {
+.header2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 
 .header {

@@ -3,7 +3,7 @@ function Particle(x, y, dna) {
   this.velocity = createVector(0, -2);
   this.pos = createVector(x, y);
   this.r = 4;
-  this.maxspeed = 5;
+  this.maxspeed = 3;
   this.maxforce = 0.2;
   this.health = 1;
 
@@ -63,7 +63,7 @@ function Particle(x, y, dna) {
 
   this.behaviors = function(food, poison) {
     let foodSteering = this.get(food, 0.4, this.dna[2]);
-    let poisonSteering = this.get(poison, -0.1, this.dna[3]);
+    let poisonSteering = this.get(poison, -10, this.dna[3]);
 
     foodSteering.mult(this.dna[0]);
     poisonSteering.mult(this.dna[1]);
@@ -136,14 +136,17 @@ function Particle(x, y, dna) {
 
   this.display = function() {
     // Draw a triangle rotated in the direction
-    const theta = this.velocity.heading() + PI / 2;
-
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(theta);
+    // push();
+    // translate(this.pos.x, this.pos.y);
+    // rotate(theta);
 
     // if (debug.checked()) {
     if (debug) {
+      const theta = this.velocity.heading() + PI / 2;
+      push();
+      translate(this.pos.x, this.pos.y);
+      rotate(theta);
+
       stroke(0, 255, 0);
       noFill();
       line(0, 0, 0, -this.dna[0] * 10);
@@ -152,28 +155,40 @@ function Particle(x, y, dna) {
       stroke(255, 0, 0);
       line(0, 0, 0, -this.dna[1] * 10);
       ellipse(0, 0, -this.dna[3] * 2);
+
+      const green = color(0, 255, 0);
+      const red = color(255, 0, 0);
+      const colr = lerpColor(red, green, this.health);
+
+      fill(colr);
+      stroke(colr);
+      strokeWeight(1);
+      beginShape();
+      vertex(0, -this.r * 2);
+      vertex(-this.r, this.r * 2);
+      vertex(this.r, this.r * 2);
+      endShape(CLOSE);
+
+      pop();
+    } else {
+      image(ant, this.pos.x, this.pos.y, 30, 30);
     }
-
-    const green = color(0, 255, 0);
-    const red = color(255, 0, 0);
-    const colr = lerpColor(red, green, this.health);
-
-    fill(colr);
-    stroke(colr);
-    strokeWeight(1);
-    beginShape();
-    vertex(0, -this.r * 2);
-    vertex(-this.r, this.r * 2);
-    vertex(this.r, this.r * 2);
-    // image(ant, this.pos.x, this.pos.y, 30, 30);
-
-    endShape(CLOSE);
-
-    pop();
+    //
+    // const green = color(0, 255, 0);
+    // const red = color(255, 0, 0);
+    // const colr = lerpColor(red, green, this.health);
+    //
+    // fill(colr);
+    // stroke(colr);
+    // strokeWeight(1);
+    // beginShape();
+    // vertex(0, -this.r * 2);
+    // vertex(-this.r, this.r * 2);
+    // vertex(this.r, this.r * 2);
   };
 
   this.inBound = function() {
-    const d = 10;
+    const d = 5;
     var desired = null;
 
     if (this.pos.x < d) {

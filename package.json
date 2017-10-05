@@ -1,5 +1,5 @@
 {
-  "name": "survival-particle",
+  "name": "survival-ants",
   "version": "1.0.0",
   "description": " ",
   "main": "app.js",
@@ -14,9 +14,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thai321/survival-particle/issues"
+    "url": "https://github.com/thai321/survival-ants/issues"
   },
-  "homepage": "https://github.com/thai321/survival-particle#readme",
+  "homepage": "https://github.com/thai321/survival-ants#readme",
   "dependencies": {
     "http-server": "^0.10.0"
   }

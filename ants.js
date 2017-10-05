@@ -1,4 +1,4 @@
-function Particle(x, y, dna) {
+function Ant(x, y, dna) {
   this.acceleration = createVector(0, 0);
   this.velocity = createVector(0, -2);
   this.pos = createVector(x, y);
@@ -74,7 +74,7 @@ function Particle(x, y, dna) {
 
   this.copy = function() {
     if (random(1) < 0.001) {
-      return new Particle(this.pos.x, this.pos.y, this.dna);
+      return new Ant(this.pos.x, this.pos.y, this.dna);
     } else {
       return null;
     }
@@ -85,7 +85,6 @@ function Particle(x, y, dna) {
     let closestThing = null;
 
     for (let i = list.length - 1; i >= 0; i--) {
-      // const d = dist(this.pos.x, this.pos.y, list[i].x, list[i].y);
       const d = this.pos.dist(list[i]);
 
       if (d < this.maxspeed) {
@@ -101,12 +100,6 @@ function Particle(x, y, dna) {
       }
     }
 
-    // if (record < 5) {
-    //   // get rid of the food
-    //   // within 5 pixels
-    //   list.splice(closestIndex, 1);
-    //   this.health += point;
-    // } else if (closestIndex > -1) {
     if (closestThing !== null) {
       return this.seek(closestThing);
     }
@@ -135,13 +128,8 @@ function Particle(x, y, dna) {
   };
 
   this.display = function() {
-    // Draw a triangle rotated in the direction
-    // push();
-    // translate(this.pos.x, this.pos.y);
-    // rotate(theta);
-
-    // if (debug.checked()) {
     if (debug) {
+      // Draw a triangle rotated in the direction
       const theta = this.velocity.heading() + PI / 2;
       push();
       translate(this.pos.x, this.pos.y);
@@ -173,18 +161,6 @@ function Particle(x, y, dna) {
     } else {
       image(ant, this.pos.x, this.pos.y, 30, 30);
     }
-    //
-    // const green = color(0, 255, 0);
-    // const red = color(255, 0, 0);
-    // const colr = lerpColor(red, green, this.health);
-    //
-    // fill(colr);
-    // stroke(colr);
-    // strokeWeight(1);
-    // beginShape();
-    // vertex(0, -this.r * 2);
-    // vertex(-this.r, this.r * 2);
-    // vertex(this.r, this.r * 2);
   };
 
   this.inBound = function() {

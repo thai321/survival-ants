@@ -3,7 +3,6 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  /*<img class='foodbg' src="/images/foodbg.png">*/
   background: url('foodbg.png');
 }
 

@@ -9,8 +9,11 @@
 
   <script language="javascript" src="libraries/p5.dom.js"></script>
   <script language="javascript" src="libraries/p5.sound.js"></script>
-  <script language="javascript" type="text/javascript" src="particle.js"></script>
+  <script language="javascript" type="text/javascript" src="ants.js"></script>
   <script language="javascript" type="text/javascript" src="app.js"></script>
+  <script language="javascript" type="text/javascript" src="reset.js"></script>
+  <script language="javascript" type="text/javascript" src="foodButtons.js"></script>
+  <script language="javascript" type="text/javascript" src="mouse.js"></script>
 
   <link rel="stylesheet" href="/styles/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/master.css">
@@ -26,7 +29,6 @@
     <div class='header2'>
 
       <div class="buttons">
-
         <button class='btn btn-small btn-outline-warning none btn-reset' onclick="reset()">Reset</button>
 
         <button class='btn btn-outline-danger debug none' onclick="debugChecked()">Debug Mode</button>
@@ -36,42 +38,51 @@
 
       <div class='feed-ant'>
         <div class="p-text">
-        <p>Pick what you'd like the ants to eat! </p>
-        <p>Click or drag on the image to feed them</p>
-      </div>
+          <p>Pick what you'd like the ants to eat! </p>
+          <p>Click or drag on the image to feed them</p>
+        </div>
+
         <i class="foodIcon" onclick="food1()"> <img src="/images/food.ico" ></i>
         <i class="foodIcon " onclick="food2()"> <img src="/images/bugger.ico" ></i>
         <i class="foodIcon" onclick="food3()"> <img src="/images/shake.png" ></i>
       </div>
 
+            <!-- Canvas -->
+      <div id="sketch-holder"></div>
 
-
-      <div id="sketch-holder">
+      <!-- End header2 -->
     </div>
 
+    <div>
+      <div class='welcome'>
+        <div class='welcome-text'>
+          <h1>Welcome to our Picnic!!</h1>
+          <h4>Watch as the Hungry Ants get to work</h4>
 
+          <h4>
+            on our food!
+            <img src='/images/food.ico'/>
+            <img src='/images/bugger.ico'/>
+            <img src='/images/shake.png'/>
+          </h4>
+
+          <h4>They'll need to stay away from </h4>
+          <h4>the poison
+            <img class="posion" src="/images/poison2.png"/>
+            , otherwise they will die
+          </h4>
+
+          <h4>You can click or drag on the image to give them food</h4>
+
+        </div>
+        <button class='start btn  btn-block' onclick="start()">Start</button>
+      </div>
     </div>
-  <div>
-  <div class='welcome'>
-    <div class='welcome-text'>
-    <h1>Welcome to our Picnic!!</h1>
-    <h4>Watch as the Hungry Ants get to work</h4>
-    <h4>
-      on our food! <img src='/images/food.ico'/>
-                  <img src='/images/bugger.ico'/>
-                  <img src='/images/shake.png'/>
-        </h4>
-    <h4>They'll need to stay away from </h4>
-    <h4>the poison <img class="posion" src="/images/poison2.png"/>, otherwise they will die</h4>
 
-    <h4>You can click or drag on the image to give them food</h4>
-
-  </div>
-  <button class='start btn  btn-block' onclick="start()">Start</button>
-  </div>
-  </div>
+    <!-- End Header  -->
   </div>
 
+<!-- End App  -->
 </div>
 
 

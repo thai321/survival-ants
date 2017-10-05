@@ -1,19 +1,24 @@
-// let particle;
+// start the simulation
 var started = false;
-let particles = [];
+
+// list of ants, food, and poison
+let ants = [];
 var food = [];
 var poison = [];
+
+// background, food, poison images
 var bg;
-var pacman;
 var foodIcon1, foodIcon2, foodIcon3;
 var poisonIcon;
+
+// width and height of canvas
 var w = 1;
 var h = 1;
 
+// type of food
 var type1, type2, type3;
 
-var pressed = false;
-
+// for debugging mode
 var debug;
 
 function preload() {
@@ -23,6 +28,7 @@ function preload() {
   foodIcon2 = loadImage('images/bugger.ico');
   foodIcon3 = loadImage('images/shake.png');
   poisonIcon = loadImage('images/poison2.png');
+
   $($('.buttons')[0]).hide();
   $($('.header2')[0]).hide();
 }
@@ -30,68 +36,9 @@ function preload() {
 function setup() {
   var canvas = createCanvas(w, h);
   canvas.parent('sketch-holder');
-
   resetSketch();
 
   noLoop();
-}
-
-function resetSketch() {
-  particles = [];
-  food = [];
-  poison = [];
-
-  for (let i = 0; i < 15; i++) {
-    const x = random(width);
-    const y = random(height);
-    particles[i] = new Particle(x, y);
-  }
-
-  for (let i = 0; i < 40; i++) {
-    // const x = random(40, width - 40);
-    // const x = random(40, width - 40);
-    const x = Math.random() * (width - 40) + 40;
-    const y = Math.random() * (height - 40) + 40;
-    // const y = random(40, height - 40);
-
-    console.log(x + ' : ' + y);
-    food.push(createVector(x, y));
-  }
-
-  for (let i = 0; i < 10; i++) {
-    const x = Math.random() * (width - 40) + 40;
-    const y = Math.random() * (height - 40) + 40;
-    poison.push(createVector(x, y));
-  }
-
-  // debug = createCheckbox();
-}
-
-function debugChecked() {
-  debug = !debug;
-}
-
-function mouseDragged() {
-  if (
-    mouseX > 20 &&
-    mouseX < width - 20 &&
-    mouseY > 20 &&
-    mouseY < height - 20
-  ) {
-    food.push(createVector(mouseX, mouseY));
-  }
-}
-
-function mousePressed() {
-  // food.push(createVector(mouseX, mouseY));
-  if (
-    mouseX > 20 &&
-    mouseX < width - 20 &&
-    mouseY > 20 &&
-    mouseY < height - 20
-  ) {
-    food.push(createVector(mouseX, mouseY));
-  }
 }
 
 function draw() {
@@ -128,22 +75,22 @@ function draw() {
       image(poisonIcon, poison[i].x, poison[i].y, 40, 40);
     }
 
-    for (let i = particles.length - 1; i >= 0; i--) {
-      particles[i].inBound();
-      particles[i].behaviors(food, poison);
-      particles[i].update();
-      particles[i].display();
+    for (let i = ants.length - 1; i >= 0; i--) {
+      ants[i].inBound();
+      ants[i].behaviors(food, poison);
+      ants[i].update();
+      ants[i].display();
 
-      const newParticle = particles[i].copy();
-      if (newParticle != null) {
-        particles.push(newParticle);
+      const newAnt = ants[i].copy();
+      if (newAnt != null) {
+        ants.push(newAnt);
       }
 
-      if (particles[i].decay()) {
-        const [x, y] = [particles[i].pos.x, particles[i].pos.y];
+      if (ants[i].decay()) {
+        const [x, y] = [ants[i].pos.x, ants[i].pos.y];
         food.push(createVector(x, y));
 
-        particles.splice(i, 1);
+        ants.splice(i, 1);
       }
     }
   }
@@ -167,42 +114,4 @@ function start() {
 
   setup();
   loop();
-}
-
-function reset() {
-  w = 1;
-  h = 1;
-  type1 = false;
-  type2 = false;
-  type3 = false;
-
-  const welcome = document.getElementsByClassName('welcome')[0];
-  welcome.classList.toggle('none');
-
-  const btnReset = document.getElementsByClassName('btn-reset')[0];
-  btnReset.classList.toggle('none');
-
-  const debugButton = document.getElementsByClassName('debug')[0];
-  debugButton.classList.toggle('none');
-
-  $($('.buttons')[0]).hide();
-  $($('.header2')[0]).hide();
-
-  setup();
-}
-
-function food1() {
-  type1 = true;
-  type2 = false;
-  type3 = false;
-}
-function food2() {
-  type2 = true;
-  type1 = false;
-  type3 = false;
-}
-function food3() {
-  type3 = true;
-  type1 = false;
-  type2 = false;
 }

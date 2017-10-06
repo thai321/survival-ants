@@ -1,36 +1,37 @@
-# Survival Particle
-## Background and Overview
-SurvivalParticle is a evolutionary system where evolving streeing agents to effectively eat food and avoid poison. The concept is base on [Steering Behaviors For Autonomous Characters](http://www.red3d.com/cwr/steer/) by Craig Reynolds, and its implementation is part of the genetic algorithms and intelligence learning.
+## Features of a great production README:
 
-## Wireframes
+- Survival Ants is a evolutionary simulation where evolving streeing agents to effectively eat food and avoid poison. The concept is base on [Steering Behaviors For Autonomous Characters](http://www.red3d.com/cwr/steer/) by Craig Reynolds, and its implementation is part of the genetic algorithms and intelligence learning.
 
-![wireframe1](docs/wireframe1.png)
+- [Survial Ants Live](https://survival-ants.herokuapp.com/)
 
+## Technologies Used
+- Vallina JavaScript
+- HTML5 Canvas and CSS
+- P5 JS
+- JQuery
 
-## Architecture and Techonologies
-This project will be implemented with the following technologies:
-- Vanilla JavaScript for Overall structure
-- HTML5 Canvas for DOM manipulation and rendering
-- P5 JS to help with drawing functionality and simulation.
+Feature & Implementation
+- `Ants`:
+  - `Attributes`:
+    - Each of the ant has a ability to look for food base on their `streeing behaviors` and their food range `perception`.
+    - The ant `seek` the closest food in their food range `perception`.
+    - The ant has a `current velocity(vector)` depend and their `acceleration` (vector), and it's limited by the `maximum speed` (number).
+    - The ant has a `desired` velocity:
+      - desire velocity = food location - the ant's location
+    - The `steering behaviors` determined how they rotate and approach the food, and it's limited by the `maximum force` (number):
+      - `streeing` = `desired` - `current velocity`
+  - `Clone`:
+    - The ant has a its own `DNA` which is the unit that determine their `food acctraction`
+    - There is 0.1% chance that they will `clone` themself. The `new clone's` `DNA` is slightly different than the original.
 
-There are two main scripts involed in this project:
-- `app.js`: this script will handle the logic for  drawing and rendering the particles, food, and posion
-- `particle.js`: this script will house the physics logic and the behaviors of particles.
+- `Food` and `Poison`:
+  - `Food` is randomly gennerated by 10% chance of every draw frame
+  - `Poison` is randomly gennerated by 1% chance of every draw frame
+  - The `ant` will die if they hit the poison.
 
+- User's interaction/ Mouse funtionality
+  - `User` has a ability to pick a `food` and feed the `ants` by clicking on the `food` and press or drag on the image.
 
-## Implementation Timeline
-### Over the weekend:
-
-- [x] Import P5 JS script in index.html
-- [x] Create `particle.js` class with all the attributes of acceleration, velocity, position, and speed
-- [x] Get the particle to attract to the mouse cursor
-- [x] Get the script to run and render on the page
-
- ### Day 1:
-- [ ] Complete the `particle.js` module (constructor, seek, steering behaviors, and display method)
-- [ ] Complete the `app.js` module (update, and setup).
-- [ ] Build food and poison
-- [ ] Build particle to get food and avoid posion
-
-### Day 2:
-- [ ] Style the app
+- `Debug Mode`:
+  - The `green cricle` is the ant's food range `perception`.
+  - The `green line` is the ant's desired `magnitute`.

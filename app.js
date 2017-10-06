@@ -44,7 +44,7 @@ function setup() {
 function draw() {
   if (started) {
     background(bg);
-    if (random(1) < 0.2) {
+    if (random(1) < 0.1) {
       const x = Math.random() * (width - 40) + 40;
       const y = Math.random() * (height - 40) + 40;
 

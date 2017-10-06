@@ -116,6 +116,7 @@ function Ant(x, y, dna) {
 
     // Steering = Desired - velocity
     const steer = p5.Vector.sub(desired, this.velocity);
+
     // streering = desire velocity - current velocity
     steer.limit(this.maxforce); // limit to maximum steering force
 

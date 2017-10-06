@@ -1,6 +1,6 @@
-# Survival Ants
+# Survival Particle
 ## Background and Overview
-Survival Ants is a evolutionary system where evolving streeing agents to effectively eat food and avoid poison. The concept is base on [Steering Behaviors For Autonomous Characters](http://www.red3d.com/cwr/steer/) by Craig Reynolds, and its implementation is part of the genetic algorithms and intelligence learning.
+SurvivalParticle is a evolutionary system where evolving streeing agents to effectively eat food and avoid poison. The concept is base on [Steering Behaviors For Autonomous Characters](http://www.red3d.com/cwr/steer/) by Craig Reynolds, and its implementation is part of the genetic algorithms and intelligence learning.
 
 ## Wireframes
 
@@ -14,9 +14,8 @@ This project will be implemented with the following technologies:
 - P5 JS to help with drawing functionality and simulation.
 
 There are two main scripts involed in this project:
-- `app.js`: this script will handle the logic for  drawing and rendering the ants, food, and posion
-- `particle.js`: this script is the house of physics logic and the behaviors of ants.
-- `mouse.js`: this script is
+- `app.js`: this script will handle the logic for  drawing and rendering the particles, food, and posion
+- `particle.js`: this script will house the physics logic and the behaviors of particles.
 
 
 ## Implementation Timeline

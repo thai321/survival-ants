@@ -17,7 +17,7 @@
 - JQuery
 - HTTP-SERVER
 
-Feature & Implementation
+## Feature & Implementation
 - `Ants`:
   - `Attributes`:
     - Each of the ant has a ability to look for food base on their `streeing behaviors` and their food range `perception`.

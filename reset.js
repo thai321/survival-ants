@@ -27,8 +27,9 @@ function resetSketch() {
   ants = [];
   food = [];
   poison = [];
+  debug = false;
 
-  for (let i = 0; i < 28; i++) {
+  for (let i = 0; i < 20; i++) {
     const x = random(width);
     const y = random(height);
     ants[i] = new Ant(x, y);

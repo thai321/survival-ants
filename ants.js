@@ -5,7 +5,7 @@ function Ant(x, y, dna) {
   this.r = 4;
   this.maxspeed = 3;
   this.maxforce = 0.2;
-  this.health = 1;
+  this.health = 0.8;
 
   this.dna = [];
   if (dna === undefined) {
@@ -44,7 +44,7 @@ function Ant(x, y, dna) {
 
   // update location
   this.update = function() {
-    // this.health -= 0.005;
+    this.health -= 0.0005;
 
     // update velocity
     this.velocity.add(this.acceleration);
@@ -73,7 +73,7 @@ function Ant(x, y, dna) {
   };
 
   this.copy = function() {
-    if (random(1) < 0.001) {
+    if (random(1) < 0.0008) {
       return new Ant(this.pos.x, this.pos.y, this.dna);
     } else {
       return null;
@@ -165,7 +165,7 @@ function Ant(x, y, dna) {
   };
 
   this.inBound = function() {
-    const d = 5;
+    const d = 2;
     var desired = null;
 
     if (this.pos.x < d) {

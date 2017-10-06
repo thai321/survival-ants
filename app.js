@@ -42,7 +42,9 @@ function setup() {
 }
 
 function draw() {
-  if (started) {
+  if (started && ants.length <= 0) {
+    resetSketch();
+  } else if (started) {
     background(bg);
     if (random(1) < 0.1) {
       const x = Math.random() * (width - 40) + 40;

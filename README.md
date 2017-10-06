@@ -15,6 +15,7 @@
 - HTML5 Canvas and CSS
 - P5 JS
 - JQuery
+- HTTP-SERVER
 
 Feature & Implementation
 - `Ants`:

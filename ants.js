@@ -10,41 +10,41 @@ function Ant(x, y, dna) {
   this.dna = [];
   if (dna === undefined) {
     // Food attraction
-    this.dna[0] = random(-5, 5);
+    this.dna[0] = random(4, 10);
 
     // Poison attraction
-    this.dna[1] = random(-5, 5);
+    // this.dna[1] = random(-5, 5);
 
     // food eye
-    this.dna[2] = random(0, 100);
+    this.dna[2] = random(40, 100);
 
     // poison eye
-    this.dna[3] = random(0, 100);
+    // this.dna[3] = random(5, 100);
   } else {
     this.dna[0] = dna[0];
     if (random(1) < 0.01) {
-      this.dna[0] += random(-0.1, 0.1);
+      this.dna[0] += random(0, 0.2);
     }
 
-    this.dna[1] = dna[1];
-    if (random(1) < 0.01) {
-      this.dna[1] += random(-0.1, 0.1);
-    }
+    // this.dna[1] = dna[1];
+    // if (random(1) < 0.01) {
+    //   this.dna[1] += random(-0.1, 0.1);
+    // }
 
     this.dna[2] = dna[2];
     if (random(1) < 0.01) {
-      this.dna[2] += random(-10, 10);
+      this.dna[2] += random(0, 10);
     }
 
     this.dna[3] = dna[3];
     if (random(1) < 0.01) {
-      this.dna[3] += random(-10, 10);
+      this.dna[3] += random(0, 10);
     }
   }
 
   // update location
   this.update = function() {
-    this.health -= 0.005;
+    // this.health -= 0.005;
 
     // update velocity
     this.velocity.add(this.acceleration);
@@ -66,7 +66,7 @@ function Ant(x, y, dna) {
     let poisonSteering = this.get(poison, -10, this.dna[3]);
 
     foodSteering.mult(this.dna[0]);
-    poisonSteering.mult(this.dna[1]);
+    // poisonSteering.mult(this.dna[1]);
 
     this.applyForce(foodSteering);
     this.applyForce(poisonSteering);
@@ -90,7 +90,7 @@ function Ant(x, y, dna) {
       if (d < this.maxspeed) {
         // eat something
         list.splice(i, 1);
-        this.health += point;
+        // this.health += point;
       } else {
         // attracting to it
         if (d < record && d < inEye) {
@@ -140,9 +140,9 @@ function Ant(x, y, dna) {
       line(0, 0, 0, -this.dna[0] * 10);
       ellipse(0, 0, -this.dna[2] * 2);
 
-      stroke(255, 0, 0);
-      line(0, 0, 0, -this.dna[1] * 10);
-      ellipse(0, 0, -this.dna[3] * 2);
+      // stroke(255, 0, 0);
+      // line(0, 0, 0, -this.dna[1] * 10);
+      // ellipse(0, 0, -this.dna[3] * 2);
 
       const green = color(0, 255, 0);
       const red = color(255, 0, 0);

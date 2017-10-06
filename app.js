@@ -44,7 +44,7 @@ function setup() {
 function draw() {
   if (started) {
     background(bg);
-    if (random(1) < 0.08) {
+    if (random(1) < 0.2) {
       const x = Math.random() * (width - 40) + 40;
       const y = Math.random() * (height - 40) + 40;
 
@@ -91,6 +91,26 @@ function draw() {
         food.push(createVector(x, y));
 
         ants.splice(i, 1);
+      } else {
+        for (let j = 0; j < poison.length; j++) {
+          // debugger;
+          if (ants[i] && poison[j]) {
+            const antX = ants[i].pos.x;
+            const antY = ants[i].pos.y;
+            const pX = poison[j].x;
+            const pY = poison[j].y;
+
+            if (
+              antX >= pX - 20 &&
+              antX <= pX + 20 &&
+              antY >= pY - 20 &&
+              antY <= pY + 20
+            ) {
+              ants.splice(i, 1);
+              poison.splice(j, 1);
+            }
+          }
+        }
       }
     }
   }

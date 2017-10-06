@@ -1,3 +1,8 @@
+### Simulation Demo
+
+![simulation](docs/simulation.gif)
+
+
 ## Features of a great production README:
 
 - Survival Ants is a evolutionary simulation where evolving streeing agents to effectively eat food and avoid poison. The concept is base on [Steering Behaviors For Autonomous Characters](http://www.red3d.com/cwr/steer/) by Craig Reynolds, and its implementation is part of the genetic algorithms and intelligence learning.
@@ -50,8 +55,3 @@ Feature & Implementation
 
 - Auto-Restart:
   - The app is automaticly restarted if number of ants is zero.
-
-
-### Simulation Demo
-
-![simulation](docs/simulation.gif)

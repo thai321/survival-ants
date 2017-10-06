@@ -1,5 +1,6 @@
-### Simulation Demo
+# Survival Ants
 
+### Simulation Demo
 ![simulation](docs/simulation.gif)
 
 

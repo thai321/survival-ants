@@ -8,7 +8,7 @@
 
 - Survival Ants is a evolutionary simulation where evolving streeing agents to effectively eat food and avoid poison. The concept is base on [Steering Behaviors For Autonomous Characters](http://www.red3d.com/cwr/steer/) by Craig Reynolds, and its implementation is part of the genetic algorithms and intelligence learning.
 
-- [Survial Ants Live](https://survival-ants.herokuapp.com/)
+- [Survial Ants Live](https://survival-ant.herokuapp.com/)
 
 ## Technologies Used
 - Vallina JavaScript

@@ -31,6 +31,7 @@ function preload() {
 
   $($('.buttons')[0]).hide();
   $($('.header2')[0]).hide();
+  $($('.site')[0]).show();
 }
 
 function setup() {
@@ -133,6 +134,7 @@ function start() {
 
   $($('.buttons')[0]).show();
   $($('.header2')[0]).show();
+  $($('.site')[0]).hide();
 
   setup();
   loop();

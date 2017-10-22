@@ -19,6 +19,7 @@ function reset() {
 
   $($('.buttons')[0]).hide();
   $($('.header2')[0]).hide();
+  $($('.site')[0]).show();
 
   setup();
 }

@@ -3,7 +3,7 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background: url('grass.jpeg');
+  background: url('grass.jpg');
 }
 
 .app {
